@@ -57,6 +57,7 @@ export default function LandingPage() {
       setIsSubmitting(false);
       setName("");
       setEmail("");
+      window.location.href = DISCORD_INVITE_URL;
     } catch {
       setSubmitError("Network error while joining waitlist. Try again.");
       setIsSubmitting(false);
@@ -177,19 +178,13 @@ export default function LandingPage() {
           </form>
         ) : (
           <div className={styles.success}>
-            <p>You&apos;re in. Join Discord for updates.</p>
+            <p>You&apos;re in. Redirecting to Discord...</p>
             <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
               Join Discord
             </a>
           </div>
         )}
         {submitError && <p className={styles.warningNote}>{submitError}</p>}
-        {!isConfigured && (
-          <p className={styles.warningNote}>
-            Admin note: set <code>NEXT_PUBLIC_SUPABASE_URL</code> and{" "}
-            <code>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY</code> in deployment env vars.
-          </p>
-        )}
       </section>
     </main>
   );

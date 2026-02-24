@@ -9,8 +9,8 @@ const WAITLIST_FORM_URL =
 
 export default function LandingPage() {
   const openWaitlistAndDiscord = () => {
-    window.open(WAITLIST_FORM_URL, "_blank", "noopener,noreferrer");
     window.open(DISCORD_INVITE_URL, "_blank", "noopener,noreferrer");
+    window.location.href = WAITLIST_FORM_URL;
   };
 
   return (

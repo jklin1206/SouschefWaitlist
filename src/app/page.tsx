@@ -32,10 +32,10 @@ export default function LandingPage() {
       try {
         const response = await fetch(WAITLIST_WEBHOOK_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          mode: "no-cors",
           body: JSON.stringify(payload),
         });
-        delivered = response.ok;
+        delivered = response.ok || response.type === "opaque";
       } catch {
         delivered = false;
       }

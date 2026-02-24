@@ -92,11 +92,9 @@
   font-family: var(--font-syne), var(--font-manrope), sans-serif;
   font-weight: 750;
   letter-spacing: -0.03em;
-  color: #2a1f13;
-  background: linear-gradient(120deg, #fff2e1 10%, #ff9b66 62%, #ffd2a8 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #d45a22;
+  background: none;
+  -webkit-text-fill-color: currentColor;
 }
 
 .hook {
@@ -106,7 +104,7 @@
   font-family: var(--font-syne), var(--font-manrope), sans-serif;
   font-weight: 650;
   letter-spacing: -0.015em;
-  color: #dd5f2a;
+  color: #d45a22;
   text-shadow:
     0 0 20px rgba(255, 148, 95, 0.4),
     0 1px 0 rgba(0, 0, 0, 0.35);
@@ -154,7 +152,7 @@
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #6f5d47;
+  color: #d45a22;
 }
 
 .shotMedia {
@@ -193,7 +191,7 @@
   line-height: 1.05;
   font-family: var(--font-manrope), sans-serif;
   letter-spacing: -0.01em;
-  color: #2a1f13;
+  color: #d45a22;
   font-weight: 650;
 }
 
@@ -224,7 +222,7 @@
   line-height: 1;
   font-family: var(--font-manrope), sans-serif;
   letter-spacing: -0.01em;
-  color: #2a1f13;
+  color: #d45a22;
   font-weight: 650;
 }
 
@@ -292,7 +290,7 @@
   margin: 0 0 8px;
   font-size: 20px;
   font-family: var(--font-syne), var(--font-manrope), sans-serif;
-  color: #2a1f13;
+  color: #d45a22;
   font-weight: 650;
 }
 
@@ -349,7 +347,7 @@
   margin: 0 0 8px;
   font-size: 26px;
   font-family: var(--font-syne), var(--font-manrope), sans-serif;
-  color: #2a1f13;
+  color: #d45a22;
   font-weight: 650;
 }
 
@@ -370,7 +368,7 @@
   margin: 0 0 8px;
   font-size: 30px;
   font-family: var(--font-syne), var(--font-manrope), sans-serif;
-  color: #2a1f13;
+  color: #d45a22;
   font-weight: 650;
 }
 

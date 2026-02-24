@@ -1,16 +1,66 @@
 "use client";
 
 import Image from "next/image";
+import { FormEvent, useState } from "react";
 import styles from "./Landing.module.css";
 
 const DISCORD_INVITE_URL = "https://discord.gg/6ssfZnFaMg";
-const WAITLIST_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSfAQKuUPGeo7KkiqVzclZRytFucQcb10HDDjXFLJvSYtARM0Q/viewform?usp=publish-editor";
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY;
 
 export default function LandingPage() {
-  const openWaitlistAndDiscord = () => {
-    window.open(DISCORD_INVITE_URL, "_blank", "noopener,noreferrer");
-    window.location.href = WAITLIST_FORM_URL;
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const isConfigured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
+
+  const submitWaitlist = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isSubmitting) return;
+
+    if (!isConfigured) {
+      setSubmitError("Waitlist is not configured yet.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    const payload = {
+      name: name.trim() || null,
+      email: email.trim().toLowerCase(),
+      source: "waitlist-landing",
+    };
+
+    try {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/waitlist_signups?on_conflict=email`, {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_ANON_KEY!,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          "Content-Type": "application/json",
+          Prefer: "resolution=merge-duplicates,return=minimal",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        setSubmitError("Could not join the waitlist right now. Try again.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      setSubmitted(true);
+      setIsSubmitting(false);
+      setName("");
+      setEmail("");
+    } catch {
+      setSubmitError("Network error while joining waitlist. Try again.");
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -103,12 +153,43 @@ export default function LandingPage() {
 
       <section className={`${styles.waitlist} ${styles.reveal}`}>
         <h2>Join the Waitlist</h2>
-        <p>One click joins the waitlist and opens Discord immediately after.</p>
-        <div className={styles.form}>
-          <button type="button" className={styles.button} onClick={openWaitlistAndDiscord}>
-            Join Waitlist + Discord
-          </button>
-        </div>
+        <p>Drop your email to get launch updates.</p>
+        {!submitted ? (
+          <form className={styles.form} onSubmit={submitWaitlist}>
+            <input
+              type="text"
+              placeholder="Name (optional)"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className={styles.input}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={styles.input}
+              required
+            />
+            <button type="submit" className={styles.button}>
+              {isSubmitting ? "Joining..." : "Join Waitlist"}
+            </button>
+          </form>
+        ) : (
+          <div className={styles.success}>
+            <p>You&apos;re in. Join Discord for updates.</p>
+            <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
+              Join Discord
+            </a>
+          </div>
+        )}
+        {submitError && <p className={styles.warningNote}>{submitError}</p>}
+        {!isConfigured && (
+          <p className={styles.warningNote}>
+            Admin note: set <code>NEXT_PUBLIC_SUPABASE_URL</code> and{" "}
+            <code>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY</code> in deployment env vars.
+          </p>
+        )}
       </section>
     </main>
   );

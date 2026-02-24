@@ -5,20 +5,42 @@ import { FormEvent, useState } from "react";
 import styles from "./Landing.module.css";
 
 const DISCORD_INVITE_URL = "https://discord.gg/6ssfZnFaMg";
+const WAITLIST_WEBHOOK_URL = process.env.NEXT_PUBLIC_WAITLIST_WEBHOOK_URL;
 
 export default function LandingPage() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [remoteStored, setRemoteStored] = useState<boolean | null>(null);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
 
     const payload = {
       name: name.trim(),
       email: email.trim(),
       createdAt: new Date().toISOString(),
+      source: "waitlist-landing",
+      userAgent: typeof navigator !== "undefined" ? navigator.userAgent : "",
     };
+    let delivered = false;
+
+    if (WAITLIST_WEBHOOK_URL) {
+      try {
+        const response = await fetch(WAITLIST_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        delivered = response.ok;
+      } catch {
+        delivered = false;
+      }
+    }
+    setRemoteStored(delivered);
 
     try {
       const existing = localStorage.getItem("sue_waitlist_entries");
@@ -30,6 +52,7 @@ export default function LandingPage() {
     }
 
     setSubmitted(true);
+    setIsSubmitting(false);
     window.open(DISCORD_INVITE_URL, "_blank", "noopener,noreferrer");
   };
 
@@ -145,15 +168,25 @@ export default function LandingPage() {
               required
             />
             <button type="submit" className={styles.button}>
-              Join Waitlist + Discord
+              {isSubmitting ? "Submitting..." : "Join Waitlist + Discord"}
             </button>
           </form>
         ) : (
           <div className={styles.success}>
-            <p>You&apos;re on the waitlist. Discord invite should already be open in a new tab.</p>
+            <p>
+              {remoteStored
+                ? "You're on the waitlist. Discord invite should already be open in a new tab."
+                : "Submitted. Discord invite should already be open. Waitlist was saved locally; webhook delivery failed or is not configured yet."}
+            </p>
             <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
               Open Discord Again
             </a>
+            {!WAITLIST_WEBHOOK_URL && (
+              <p className={styles.warningNote}>
+                Admin note: set <code>NEXT_PUBLIC_WAITLIST_WEBHOOK_URL</code> in your deploy environment to save users
+                to Google Sheets.
+              </p>
+            )}
           </div>
         )}
       </section>

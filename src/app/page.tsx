@@ -5,8 +5,6 @@ import { FormEvent, useState } from "react";
 import styles from "./Landing.module.css";
 
 const DISCORD_INVITE_URL = "https://discord.gg/6ssfZnFaMg";
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY;
 
 export default function LandingPage() {
   const [name, setName] = useState("");
@@ -15,16 +13,9 @@ export default function LandingPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const isConfigured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
-
   const submitWaitlist = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (isSubmitting) return;
-
-    if (!isConfigured) {
-      setSubmitError("Waitlist is not configured yet.");
-      return;
-    }
 
     setIsSubmitting(true);
     setSubmitError(null);
@@ -36,14 +27,9 @@ export default function LandingPage() {
     };
 
     try {
-      const response = await fetch(`${SUPABASE_URL}/rest/v1/waitlist_signups?on_conflict=email`, {
+      const response = await fetch("/waitlist-api", {
         method: "POST",
-        headers: {
-          apikey: SUPABASE_ANON_KEY!,
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          "Content-Type": "application/json",
-          Prefer: "resolution=merge-duplicates,return=minimal",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 

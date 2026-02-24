@@ -1,58 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useState } from "react";
 import styles from "./Landing.module.css";
 
 const DISCORD_INVITE_URL = "https://discord.gg/6ssfZnFaMg";
-const WAITLIST_WEBHOOK_URL = process.env.NEXT_PUBLIC_WAITLIST_WEBHOOK_URL;
+const WAITLIST_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfAQKuUPGeo7KkiqVzclZRytFucQcb10HDDjXFLJvSYtARM0Q/viewform?usp=publish-editor";
 
 export default function LandingPage() {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [remoteStored, setRemoteStored] = useState<boolean | null>(null);
-
-  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (isSubmitting) return;
-    setIsSubmitting(true);
-
-    const payload = {
-      name: name.trim(),
-      email: email.trim(),
-      createdAt: new Date().toISOString(),
-      source: "waitlist-landing",
-      userAgent: typeof navigator !== "undefined" ? navigator.userAgent : "",
-    };
-    let delivered = false;
-
-    if (WAITLIST_WEBHOOK_URL) {
-      try {
-        const response = await fetch(WAITLIST_WEBHOOK_URL, {
-          method: "POST",
-          mode: "no-cors",
-          body: JSON.stringify(payload),
-        });
-        delivered = response.ok || response.type === "opaque";
-      } catch {
-        delivered = false;
-      }
-    }
-    setRemoteStored(delivered);
-
-    try {
-      const existing = localStorage.getItem("sue_waitlist_entries");
-      const parsed = existing ? JSON.parse(existing) : [];
-      parsed.push(payload);
-      localStorage.setItem("sue_waitlist_entries", JSON.stringify(parsed));
-    } catch {
-      // Non-blocking: keep signup flow even if storage is unavailable.
-    }
-
-    setSubmitted(true);
-    setIsSubmitting(false);
+  const openWaitlistAndDiscord = () => {
+    window.open(WAITLIST_FORM_URL, "_blank", "noopener,noreferrer");
     window.open(DISCORD_INVITE_URL, "_blank", "noopener,noreferrer");
   };
 
@@ -146,49 +103,15 @@ export default function LandingPage() {
 
       <section className={`${styles.waitlist} ${styles.reveal}`}>
         <h2>Join the Waitlist</h2>
-        <p>
-          Sign up to get product updates. Discord invite opens automatically after submission.
-        </p>
-
-        {!submitted ? (
-          <form className={styles.form} onSubmit={onSubmit}>
-            <input
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={styles.input}
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={styles.input}
-              required
-            />
-            <button type="submit" className={styles.button}>
-              {isSubmitting ? "Submitting..." : "Join Waitlist + Discord"}
-            </button>
-          </form>
-        ) : (
-          <div className={styles.success}>
-            <p>
-              {remoteStored
-                ? "You're on the waitlist. Discord invite should already be open in a new tab."
-                : "Submitted. Discord invite should already be open. Waitlist was saved locally; webhook delivery failed or is not configured yet."}
-            </p>
-            <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
-              Open Discord Again
-            </a>
-            {!WAITLIST_WEBHOOK_URL && (
-              <p className={styles.warningNote}>
-                Admin note: set <code>NEXT_PUBLIC_WAITLIST_WEBHOOK_URL</code> in your deploy environment to save users
-                to Google Sheets.
-              </p>
-            )}
-          </div>
-        )}
+        <p>Join the waitlist on Google Forms and jump into Discord to follow updates.</p>
+        <div className={styles.form}>
+          <button type="button" className={styles.button} onClick={openWaitlistAndDiscord}>
+            Join Waitlist + Discord
+          </button>
+          <a href={WAITLIST_FORM_URL} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
+            Open Waitlist Form
+          </a>
+        </div>
       </section>
     </main>
   );

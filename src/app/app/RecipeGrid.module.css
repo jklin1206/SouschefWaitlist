@@ -1,0 +1,224 @@
+.libraryContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.libraryHeader {
+    padding: 0 24px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 16px;
+}
+
+.headerTitle {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.searchBar {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 10px;
+    color: var(--text-dim);
+}
+
+.searchInput {
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 8px 12px 8px 32px;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+}
+
+.searchInput:focus {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: var(--surface);
+}
+
+.searchInput::placeholder {
+    color: var(--text-dim);
+}
+
+
+/* --- Recipe List --- */
+.recipeList {
+    flex: 1;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.emptyState {
+    padding: 24px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 13px;
+    font-style: italic;
+    font-family: var(--font-sans);
+}
+
+.recipeCard {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.2s;
+    position: relative;
+}
+
+.recipeCard:hover {
+    background: var(--surface-2);
+}
+
+.cardImage {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--surface-2);
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cardContent {
+    flex: 1;
+    min-width: 0;
+    /* for truncation */
+}
+
+.cardTitle {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 2px;
+}
+
+.cardMeta {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.deleteBtn {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0;
+    /* Hide by default */
+    transition: opacity 0.2s, background 0.2s, color 0.2s;
+}
+
+.recipeCard:hover .deleteBtn {
+    opacity: 1;
+}
+
+.deleteBtn:hover {
+    background: rgba(224, 96, 96, 0.1);
+    color: #e06060;
+}
+
+
+/* --- Import Section --- */
+.importSection {
+    padding: 16px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 16px;
+}
+
+.importLabel {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.importRow {
+    display: flex;
+    gap: 8px;
+}
+
+.importInput {
+    flex: 1;
+    background: var(--surface-2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    min-width: 0;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.importInput:focus {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.importBtn {
+    background: var(--surface-2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+}
+
+.importBtn:hover:not(:disabled) {
+    background: var(--surface);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.importBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

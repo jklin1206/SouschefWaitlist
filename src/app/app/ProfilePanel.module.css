@@ -1,0 +1,202 @@
+.profileOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 400;
+    background: rgba(11, 9, 6, 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.profilePanel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    width: 100%;
+    max-width: 440px;
+    padding: 28px 24px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
+}
+
+.profileTitle {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+.profileField {
+    margin-bottom: 18px;
+}
+
+.profileLabel {
+    font-size: 11px;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.tagContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    min-height: 48px;
+    cursor: text;
+    transition: border-color 0.2s;
+}
+
+.tagContainer:focus-within {
+    border-color: var(--accent);
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 13px;
+    color: var(--text);
+    font-family: var(--font-sans);
+}
+
+.tag.allergy {
+    border-color: #e06060;
+    background: rgba(224, 96, 96, 0.1);
+}
+
+.tag.dietary {
+    border-color: var(--teal);
+    background: rgba(74, 158, 150, 0.08);
+}
+
+.tag.dislike {
+    border-color: var(--accent-2);
+    background: rgba(212, 160, 64, 0.08);
+}
+
+.tagRemove {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0 2px;
+    transition: color 0.15s;
+}
+
+.tagRemove:hover {
+    color: #e06060;
+}
+
+.tagInput {
+    border: none;
+    background: none;
+    outline: none;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    min-width: 120px;
+    flex: 1;
+}
+
+.tagInput::placeholder {
+    color: var(--text-dim);
+}
+
+/* ── Dietary restriction pill grid ── */
+.dietGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.dietPill {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    user-select: none;
+}
+
+.dietPill:hover {
+    border-color: var(--teal);
+    color: var(--text);
+}
+
+.dietPillActive {
+    background: rgba(74, 158, 150, 0.15);
+    border-color: var(--teal);
+    color: var(--teal);
+    font-weight: 500;
+}
+
+.profileActions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 36px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background 0.2s, opacity 0.2s, color 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+}
+
+.btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.btnPrimary {
+    background: var(--accent);
+    color: #fff;
+}
+
+.btnPrimary:hover:not(:disabled) {
+    background: #cf5522;
+}
+
+.btnGhost {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+
+.btnGhost:hover:not(:disabled) {
+    border-color: var(--text-muted);
+    color: var(--text);
+}

@@ -1,0 +1,61 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" fill="#0A0906"/>
+  <rect x="40" y="40" width="1320" height="820" rx="20" fill="#130F08" stroke="#372B1A" stroke-width="2"/>
+
+  <rect x="78" y="82" width="1244" height="58" rx="10" fill="#1C160D"/>
+  <text x="104" y="118" fill="#EBDCC3" font-family="Arial" font-size="20">Dinner Service Dashboard - Sue The SousChef</text>
+
+  <rect x="78" y="168" width="400" height="286" rx="14" fill="#15120C" stroke="#2D2418"/>
+  <text x="102" y="202" fill="#F2E7D4" font-family="Arial" font-size="20">Multi-Session Tracking</text>
+  <rect x="102" y="220" width="352" height="62" rx="10" fill="#21190F"/>
+  <text x="116" y="247" fill="#E8D8BD" font-family="Arial" font-size="16">One-pot Hainanese chicken rice</text>
+  <text x="116" y="268" fill="#AFA082" font-family="Arial" font-size="14">Step 5 / 7 - Stir and cover</text>
+
+  <rect x="102" y="294" width="352" height="62" rx="10" fill="#21190F"/>
+  <text x="116" y="321" fill="#E8D8BD" font-family="Arial" font-size="16">Taiwanese Beef Noodle Soup</text>
+  <text x="116" y="342" fill="#AFA082" font-family="Arial" font-size="14">Step 6 / 9 - Add noodles</text>
+
+  <rect x="102" y="368" width="352" height="62" rx="10" fill="#21190F"/>
+  <text x="116" y="395" fill="#E8D8BD" font-family="Arial" font-size="16">Pan-Seared Steak with Garlic Butter</text>
+  <text x="116" y="416" fill="#AFA082" font-family="Arial" font-size="14">Step 3 / 5 - Rest and plate</text>
+
+  <rect x="502" y="168" width="396" height="286" rx="14" fill="#15120C" stroke="#2D2418"/>
+  <text x="526" y="202" fill="#F2E7D4" font-family="Arial" font-size="20">Automatic Timers</text>
+
+  <rect x="526" y="222" width="348" height="58" rx="10" fill="#2B1A0F" stroke="#E8622A"/>
+  <text x="542" y="248" fill="#FFEBDD" font-family="Arial" font-size="16">Broth simmer</text>
+  <text x="790" y="248" fill="#FFC5A8" font-family="Arial" font-size="16">42:31</text>
+
+  <rect x="526" y="292" width="348" height="58" rx="10" fill="#1F170F"/>
+  <text x="542" y="318" fill="#EEDFC6" font-family="Arial" font-size="16">Chicken marinate</text>
+  <text x="790" y="318" fill="#CBB791" font-family="Arial" font-size="16">06:09</text>
+
+  <rect x="526" y="362" width="348" height="58" rx="10" fill="#1F170F"/>
+  <text x="542" y="388" fill="#EEDFC6" font-family="Arial" font-size="16">Rice steam</text>
+  <text x="790" y="388" fill="#CBB791" font-family="Arial" font-size="16">12:54</text>
+
+  <rect x="922" y="168" width="400" height="286" rx="14" fill="#15120C" stroke="#2D2418"/>
+  <text x="946" y="202" fill="#F2E7D4" font-family="Arial" font-size="20">Assistant Notes</text>
+  <text x="946" y="236" fill="#DAC9AB" font-family="Arial" font-size="16">- Imported 3 recipes from links</text>
+  <text x="946" y="264" fill="#DAC9AB" font-family="Arial" font-size="16">- Auto timer started from "simmer 45 min"</text>
+  <text x="946" y="292" fill="#DAC9AB" font-family="Arial" font-size="16">- Dairy-free substitutions enabled</text>
+  <text x="946" y="320" fill="#DAC9AB" font-family="Arial" font-size="16">- Peanut allergy warning active</text>
+  <text x="946" y="348" fill="#DAC9AB" font-family="Arial" font-size="16">- Next: plate chicken and prep garnishes</text>
+
+  <rect x="78" y="482" width="1244" height="334" rx="14" fill="#11100B" stroke="#2D2418"/>
+  <text x="102" y="516" fill="#F2E7D4" font-family="Arial" font-size="20">Conversation Snapshot</text>
+
+  <rect x="102" y="536" width="670" height="78" rx="12" fill="#1E1911"/>
+  <text x="122" y="567" fill="#F0E4D0" font-family="Arial" font-size="17">User: set timers for soup simmer and rice steam</text>
+  <text x="122" y="592" fill="#BDAE90" font-family="Arial" font-size="14">Intent resolved across 2 active sessions</text>
+
+  <rect x="230" y="628" width="860" height="86" rx="12" fill="#2A1B10" stroke="#E8622A"/>
+  <text x="250" y="662" fill="#FFEBDD" font-family="Arial" font-size="17">Sue: Done. Soup simmer timer set for 45 min, rice steam timer set for 18 min.</text>
+  <text x="250" y="687" fill="#EBC2A8" font-family="Arial" font-size="14">I also flagged your peanut allergy for any garnish suggestions.</text>
+
+  <rect x="102" y="728" width="670" height="64" rx="12" fill="#1E1911"/>
+  <text x="122" y="754" fill="#F0E4D0" font-family="Arial" font-size="16">User: what should I do next for the noodle soup?</text>
+  <text x="122" y="776" fill="#BDAE90" font-family="Arial" font-size="14">Assistant keeps both sessions in sync</text>
+
+  <text x="100" y="844" fill="#7E6D53" font-family="Arial" font-size="16">Sample multi-session screenshot for landing page showcase</text>
+</svg>

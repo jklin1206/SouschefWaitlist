@@ -103,14 +103,11 @@ export default function LandingPage() {
 
       <section className={`${styles.waitlist} ${styles.reveal}`}>
         <h2>Join the Waitlist</h2>
-        <p>Join the waitlist on Google Forms and jump into Discord to follow updates.</p>
+        <p>One click joins the waitlist and opens Discord immediately after.</p>
         <div className={styles.form}>
           <button type="button" className={styles.button} onClick={openWaitlistAndDiscord}>
             Join Waitlist + Discord
           </button>
-          <a href={WAITLIST_FORM_URL} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
-            Open Waitlist Form
-          </a>
         </div>
       </section>
     </main>

@@ -212,6 +212,10 @@
 
 .features {
   margin-bottom: 26px;
+  padding: 18px;
+  border: 1px solid rgba(255, 122, 61, 0.36);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(30, 21, 14, 0.62), rgba(14, 11, 8, 0.92));
 }
 
 .features h2 {
@@ -281,6 +285,7 @@
 .featureSupport {
   grid-column: span 6;
   padding: 18px;
+  border-color: rgba(255, 122, 61, 0.45);
 }
 
 .featureCard h3 {

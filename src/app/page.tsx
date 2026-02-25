@@ -1,55 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useState } from "react";
 import styles from "./Landing.module.css";
 
 const DISCORD_INVITE_URL = "https://discord.gg/6ssfZnFaMg";
+const DEFAULT_WAITLIST_FORM_URL =
+  "https://docs.google.com/forms/d/1Eh1IOAFq2_dW9FYG0uSPlkMZnDQMOy05HbhBevF8gU8/viewform";
+const WAITLIST_FORM_URL = process.env.NEXT_PUBLIC_WAITLIST_GOOGLE_FORM_URL || DEFAULT_WAITLIST_FORM_URL;
 
 export default function LandingPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
-
-  const submitWaitlist = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (isSubmitting) return;
-
-    setIsSubmitting(true);
-    setSubmitError(null);
-
-    const payload = {
-      name: name.trim() || null,
-      email: email.trim().toLowerCase(),
-      source: "waitlist-landing",
-    };
-
-    try {
-      const response = await fetch("/waitlist-api", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        setSubmitError("Could not join the waitlist right now. Try again.");
-        setIsSubmitting(false);
-        return;
-      }
-
-      setSubmitted(true);
-      setIsSubmitting(false);
-      setName("");
-      setEmail("");
-      window.location.href = DISCORD_INVITE_URL;
-    } catch {
-      setSubmitError("Network error while joining waitlist. Try again.");
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <main className={styles.page}>
       <div className={styles.orbA} aria-hidden />
@@ -140,37 +99,21 @@ export default function LandingPage() {
 
       <section className={`${styles.waitlist} ${styles.reveal}`}>
         <h2>Join the Waitlist</h2>
-        <p>Drop your email to get launch updates.</p>
-        {!submitted ? (
-          <form className={styles.form} onSubmit={submitWaitlist}>
-            <input
-              type="text"
-              placeholder="Name (optional)"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={styles.input}
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={styles.input}
-              required
-            />
-            <button type="submit" className={styles.button}>
-              {isSubmitting ? "Joining..." : "Join Waitlist"}
-            </button>
-          </form>
-        ) : (
-          <div className={styles.success}>
-            <p>You&apos;re in. Redirecting to Discord...</p>
-            <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
-              Join Discord
-            </a>
-          </div>
-        )}
-        {submitError && <p className={styles.warningNote}>{submitError}</p>}
+        <p>Waitlist and Discord are separate. Join the waitlist for launch emails; Discord is for community chat.</p>
+        <div className={styles.waitlistActions}>
+          <a
+            href={WAITLIST_FORM_URL || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.button}
+            aria-disabled={!WAITLIST_FORM_URL}
+          >
+            Join Google Waitlist
+          </a>
+          <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
+            Join Discord
+          </a>
+        </div>
       </section>
     </main>
   );

@@ -1,6 +1,8 @@
-# Google Sheets Waitlist Setup
+# Google Sheets Waitlist Setup (Optional Legacy Flow)
 
-This repo is already wired to submit waitlist entries from `souschef-frontend/src/app/page.tsx` to:
+This flow is optional/legacy. The current waitlist page uses a Google Form URL.
+
+If you want webhook-based Google Sheets ingestion instead, wire these values:
 
 - `NEXT_PUBLIC_WAITLIST_WEBHOOK_URL`
 
@@ -49,6 +51,4 @@ Trigger redeploy by:
 
 ## Notes
 
-- Frontend uses `fetch(..., { mode: "no-cors" })` for compatibility with Apps Script web apps.
-- Local fallback still stores entries in browser localStorage if webhook is not configured.
 - The script deduplicates by email.

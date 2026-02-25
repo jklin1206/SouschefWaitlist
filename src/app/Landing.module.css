@@ -162,7 +162,7 @@
   align-items: center;
   justify-content: center;
   padding: 6px;
-  height: clamp(260px, 32vw, 420px);
+  height: clamp(340px, 42vw, 560px);
   border: 1px solid rgba(122, 96, 63, 0.2);
   border-radius: 10px;
   background: #fffaf4;
@@ -471,7 +471,7 @@
   }
 
   .shotMedia {
-    height: clamp(250px, 44vw, 390px);
+    height: clamp(320px, 56vw, 500px);
   }
 }
 

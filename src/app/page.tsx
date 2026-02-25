@@ -28,18 +28,46 @@ export default function LandingPage() {
       </header>
 
       <section className={`${styles.shotGrid} ${styles.reveal}`}>
-        <article className={styles.shotCard}>
-          <h2>Inside Sue</h2>
+        <article className={`${styles.shotCard} ${styles.shotPrimary}`}>
+          <h2>Recipe View</h2>
           <div className={styles.shotMedia}>
             <Image
-              src="/sue-real-screenshot-1.png"
-              alt="Real screenshot of Sue The SousChef timer view"
+              src="/sue-recipe-page.png"
+              alt="Sue The SousChef recipe page"
               width={1200}
               height={760}
               quality={100}
               unoptimized
               className={styles.shotImage}
               priority
+            />
+          </div>
+        </article>
+        <article className={`${styles.shotCard} ${styles.shotTrending}`}>
+          <h2>Trending</h2>
+          <div className={styles.shotMedia}>
+            <Image
+              src="/sue-trending-page.png"
+              alt="Sue The SousChef trending recipes page"
+              width={1200}
+              height={760}
+              quality={100}
+              unoptimized
+              className={styles.shotImage}
+            />
+          </div>
+        </article>
+        <article className={`${styles.shotCard} ${styles.shotSession}`}>
+          <h2>Cooking Session</h2>
+          <div className={styles.shotMedia}>
+            <Image
+              src="/Sue-step-page.jpg"
+              alt="Sue The SousChef cooking session step page"
+              width={1200}
+              height={760}
+              quality={100}
+              unoptimized
+              className={styles.shotImage}
             />
           </div>
         </article>
@@ -87,14 +115,6 @@ export default function LandingPage() {
             tier="support"
           />
         </div>
-      </section>
-
-      <section className={`${styles.roadmap} ${styles.reveal}`}>
-        <h2>What&apos;s Next</h2>
-        <p>
-          We plan to add live photo feedback for in-the-moment cooking correction and take Sue The SousChef into
-          dedicated mobile development.
-        </p>
       </section>
 
       <section className={`${styles.waitlist} ${styles.reveal}`}>

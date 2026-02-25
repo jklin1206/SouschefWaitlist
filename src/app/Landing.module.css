@@ -54,7 +54,7 @@
 }
 
 .waitlist.reveal {
-  animation-delay: 260ms;
+  animation-delay: 220ms;
 }
 
 @keyframes rise {
@@ -133,7 +133,7 @@
 
 .shotGrid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 12px;
   margin-bottom: 18px;
 }
@@ -144,6 +144,18 @@
   border-radius: 12px;
   background: linear-gradient(180deg, #fffdf9, #f9f3ea);
   box-shadow: 0 12px 22px rgba(82, 63, 39, 0.12);
+}
+
+.shotPrimary {
+  grid-column: span 7;
+}
+
+.shotTrending {
+  grid-column: span 5;
+}
+
+.shotSession {
+  grid-column: 3 / span 8;
 }
 
 .shotCard h2 {
@@ -467,6 +479,12 @@
   .shotImage {
     height: auto;
   }
+
+  .shotPrimary,
+  .shotTrending,
+  .shotSession {
+    grid-column: span 2;
+  }
 }
 
 @media (max-width: 900px) {
@@ -490,5 +508,15 @@
   .heroMeta span {
     font-size: 10px;
     letter-spacing: 0.06em;
+  }
+
+  .shotGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .shotPrimary,
+  .shotTrending,
+  .shotSession {
+    grid-column: auto;
   }
 }

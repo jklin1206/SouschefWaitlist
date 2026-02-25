@@ -28,7 +28,7 @@ export default function LandingPage() {
       </header>
 
       <section className={`${styles.shotGrid} ${styles.reveal}`}>
-        <article className={`${styles.shotCard} ${styles.shotPrimary}`}>
+        <article className={styles.shotCard}>
           <h2>Recipe View</h2>
           <div className={styles.shotMedia}>
             <Image
@@ -43,7 +43,7 @@ export default function LandingPage() {
             />
           </div>
         </article>
-        <article className={`${styles.shotCard} ${styles.shotTrending}`}>
+        <article className={styles.shotCard}>
           <h2>Trending</h2>
           <div className={styles.shotMedia}>
             <Image
@@ -57,7 +57,7 @@ export default function LandingPage() {
             />
           </div>
         </article>
-        <article className={`${styles.shotCard} ${styles.shotSession}`}>
+        <article className={styles.shotCard}>
           <h2>Cooking Session</h2>
           <div className={styles.shotMedia}>
             <Image

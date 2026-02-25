@@ -133,29 +133,19 @@
 
 .shotGrid {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
   margin-bottom: 18px;
 }
 
 .shotCard {
+  display: flex;
+  flex-direction: column;
   padding: 12px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: linear-gradient(180deg, #fffdf9, #f9f3ea);
   box-shadow: 0 12px 22px rgba(82, 63, 39, 0.12);
-}
-
-.shotPrimary {
-  grid-column: span 7;
-}
-
-.shotTrending {
-  grid-column: span 5;
-}
-
-.shotSession {
-  grid-column: 3 / span 8;
 }
 
 .shotCard h2 {
@@ -172,6 +162,7 @@
   align-items: center;
   justify-content: center;
   padding: 6px;
+  height: clamp(260px, 32vw, 420px);
   border: 1px solid rgba(122, 96, 63, 0.2);
   border-radius: 10px;
   background: #fffaf4;
@@ -180,8 +171,7 @@
 .shotImage {
   display: block;
   width: 100%;
-  height: auto;
-  max-height: min(72vh, 860px);
+  height: 100%;
   object-fit: contain;
   object-position: center;
   border: 1px solid rgba(122, 96, 63, 0.25);
@@ -464,6 +454,10 @@
 }
 
 @media (max-width: 1040px) {
+  .shotGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .featureGrid {
     grid-template-columns: 1fr 1fr;
   }
@@ -476,14 +470,8 @@
     grid-column: span 1;
   }
 
-  .shotImage {
-    height: auto;
-  }
-
-  .shotPrimary,
-  .shotTrending,
-  .shotSession {
-    grid-column: span 2;
+  .shotMedia {
+    height: clamp(250px, 44vw, 390px);
   }
 }
 
@@ -512,11 +500,5 @@
 
   .shotGrid {
     grid-template-columns: 1fr;
-  }
-
-  .shotPrimary,
-  .shotTrending,
-  .shotSession {
-    grid-column: auto;
   }
 }
